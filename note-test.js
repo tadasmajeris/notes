@@ -1,6 +1,6 @@
-function testCirceRadiusIs10(){
-  var circle = new Circle();
-  assert.isEqual(circle.radius, 10);
+function textIsEmptyByDefault(){
+  var note = new Note();
+  assert.isEqual(note.text(),"");
 }
 
-testCirceRadiusIs10();
+textIsEmptyByDefault();
