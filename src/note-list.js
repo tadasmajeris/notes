@@ -1,7 +1,12 @@
 function NoteList() {
-
+  this.notesArray = [];
 }
 
 NoteList.prototype.notes = function() {
-  return []
+  return this.notesArray
+};
+
+NoteList.prototype.addNote = function(string) {
+  var note = new Note(string);
+  this.notesArray.push(note)
 };
