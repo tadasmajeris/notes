@@ -10,7 +10,7 @@
             html += "<ul>";
             for (var i = 0; i < this._noteList.notes().length; i++) {
                 var note = this._noteList.notes()[i];
-                html += `<li><div>${note.text()}</div></li>`
+                html += `<li><div>${note.text().slice(0, 20)}...</div></li>`
             }
 
             html += "</ul>";
