@@ -19,7 +19,7 @@ describe('NoteListView', function() {
 
     })
 
-    it('creates an empty note list', function() {
+    it('renders an empty html with empty NoteList', function() {
         var noteList = new NoteList();
         var noteListView = new NoteListView(noteList);
         expect(noteListView.renderHTML()).toBeEmpty()
