@@ -13,7 +13,34 @@ describe('NoteController', function() {
     var noteController = new NoteController(noteList);
     noteController.addHtmlFromNoteList();
     var appDiv = document.getElementById('app');
-    expect(appDiv.innerHTML).toEqual("<ul><li><div>Er du Thai ambassado...</div></li><li><div>Vil du sitte paa fan...</div></li></ul>")
+    var url = window.location.href;
+    expect(appDiv.innerHTML).toEqual(`<ul><li><a href="#notes/0">Er du Thai ambassado...</a></li><li><a href="#notes/1">Vil du sitte paa fan...</a></li></ul>`)
   });
-  
+
+  it('changes the content depending on which note was clicked', function(){
+    var noteList = new NoteList();
+    noteList.addNote("hello World");
+    noteList.addNote("hello Tadas how you doing?");
+    var noteController = new NoteController(noteList);
+    noteController.addHtmlFromNoteList();
+
+    var appDiv = document.getElementById('app');
+    var link0 = appDiv.getElementsByTagName('a')[0];
+    var link1 = appDiv.getElementsByTagName('a')[1];
+
+    var checkTheContentHas = function(noteText) {
+      var newAppDiv = document.getElementById('app');
+      expect(newAppDiv.innerHTML).toEqual(`<div>${noteText}</div>`);
+    }
+
+    window.addEventListener('hashchange', function(event){
+      var noteID = window.location.hash.replace('#notes/', '');
+      var noteText = noteList.notes()[noteID].text();
+      checkTheContentHas(noteText);
+    });
+
+    link0.click();
+    link1.click();
+  });
+
 })
