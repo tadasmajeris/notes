@@ -1,43 +1,41 @@
 (function(exports) {
 
   function NoteController(noteList) {
-    this._noteList = noteList
+    addHtmlFromNoteList(noteList);
+    addFormListener(noteList, addHtmlFromNoteList);
+    addHashListener(noteList, updateContent);
   }
 
-  NoteController.prototype.noteList = function() {
-    return this._noteList
-  };
-
-  NoteController.prototype.addHtmlFromNoteList = function() {
-    var noteListView = new NoteListView(this.noteList());
+  var addHtmlFromNoteList = function(noteList) {
+    var noteListView = new NoteListView(noteList);
     var html = noteListView.renderHTML();
     var appDiv = document.getElementById('app');
     appDiv.innerHTML = html;
-
-    this.addFormListener();
-    this.addHashListener(this.updateContent, this.noteList());
+    var textArea = document.getElementById('text');
+    textArea.value = '';
   };
 
-  NoteController.prototype.addHashListener = function(callback, noteList) {
+  var addHashListener = function(noteList, callback) {
     window.addEventListener('hashchange', function(event){
       var noteID = window.location.hash.replace('#notes/', '');
       callback(noteID, noteList);
     })
   };
 
-  NoteController.prototype.updateContent = function(noteID, noteList) {
+  var updateContent = function(noteID, noteList) {
     var note = noteList.notes()[noteID];
-    var noteView = new SingleNoteView(note);
+    var noteView = new SingleNoteView(note || new Note());
     var noteDiv = document.getElementById('note');
     noteDiv.innerHTML = noteView.renderHTML();
   };
 
-  NoteController.prototype.addFormListener = function() {
+  var addFormListener = function(noteList, callback) {
     var form = document.getElementById('new_note');
     form.addEventListener("submit", function(event){
       event.preventDefault();    //stop form from submitting
-      var text = event.target[0].value;
-      console.log(text);
+      var textArea = event.target[0];
+      noteList.addNote(textArea.value);
+      callback(noteList);
     });
   };
 
