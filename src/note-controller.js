@@ -13,10 +13,12 @@
     var html = noteListView.renderHTML();
     var appDiv = document.getElementById('app');
     appDiv.innerHTML = html;
-    this.addHashListener('hashchange', this.updateContent, this.noteList());
+
+    this.addFormListener();
+    this.addHashListener(this.updateContent, this.noteList());
   };
 
-  NoteController.prototype.addHashListener = function(eventType, callback, noteList) {
+  NoteController.prototype.addHashListener = function(callback, noteList) {
     window.addEventListener('hashchange', function(event){
       var noteID = window.location.hash.replace('#notes/', '');
       callback(noteID, noteList);
@@ -28,6 +30,14 @@
     var noteView = new SingleNoteView(note);
     var appDiv = document.getElementById('app');
     appDiv.innerHTML = noteView.renderHTML();
+  };
+
+  NoteController.prototype.addFormListener = function() {
+    var form = document.getElementById('new_note');
+    form.addEventListener("submit", function(event){
+      event.preventDefault();    //stop form from submitting
+      
+    });
   };
 
   exports.NoteController = NoteController;
