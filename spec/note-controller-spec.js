@@ -29,8 +29,8 @@ describe('NoteController', function() {
     var link1 = appDiv.getElementsByTagName('a')[1];
 
     var checkTheContentHas = function(noteText) {
-      var newAppDiv = document.getElementById('app');
-      expect(newAppDiv.innerHTML).toEqual(`<div>${noteText}</div>`);
+      var noteDiv = document.getElementById('note');
+      expect(noteDiv.innerHTML).toEqual(`<div>${noteText}</div>`);
     }
 
     window.addEventListener('hashchange', function(event){

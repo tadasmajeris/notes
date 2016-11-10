@@ -13,11 +13,12 @@
   <body>
     <h2 style="margin: 0">Notes</h2>
     <form id='new_note' action="#notes" method="post">
-      <textarea id='text' rows="6" cols="30" style="resize: none;"></textarea><br />
+      <textarea id='text' name='taText' rows="6" cols="30" style="resize: none;"></textarea><br />
       <input type="submit" value="Create">
     </form>
     <br />
     <div id='app'></div>
+    <div id='note'></div>
 
     <script src='./src/note-controller.js'></script>
     <script src='./src/index.js'></script>

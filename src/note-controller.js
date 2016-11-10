@@ -28,15 +28,16 @@
   NoteController.prototype.updateContent = function(noteID, noteList) {
     var note = noteList.notes()[noteID];
     var noteView = new SingleNoteView(note);
-    var appDiv = document.getElementById('app');
-    appDiv.innerHTML = noteView.renderHTML();
+    var noteDiv = document.getElementById('note');
+    noteDiv.innerHTML = noteView.renderHTML();
   };
 
   NoteController.prototype.addFormListener = function() {
     var form = document.getElementById('new_note');
     form.addEventListener("submit", function(event){
       event.preventDefault();    //stop form from submitting
-      
+      var text = event.target[0].value;
+      console.log(text);
     });
   };
 
