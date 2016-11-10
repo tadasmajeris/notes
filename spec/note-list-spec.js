@@ -13,5 +13,14 @@ describe('NoteList', function(){
       expect(notelist.notes().length).toEqual(1);
       expect(notelist.notes()[0].text()).toEqual('Hello world');
     });
+
+    it('should give the notes unique ids', function(){
+      var notelist = new NoteList();
+      notelist.addNote('Hello world');
+      notelist.addNote('Hello Tadas');
+      expect(notelist.notes()[0].id()).toEqual(0);
+      expect(notelist.notes()[1].id()).toEqual(1);
+    })
   });
+
 })

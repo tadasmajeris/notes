@@ -1,24 +1,24 @@
 (function(exports) {
 
-    function NoteListView(noteList) {
-        this._noteList = noteList;
+  function NoteListView(noteList) {
+    this._noteList = noteList;
+  }
+
+  NoteListView.prototype.renderHTML = function() {
+    var html = "";
+    
+    if (this._noteList.isNotEmpty()) {
+      html += "<ul>";
+      for (var i = 0; i < this._noteList.notes().length; i++) {
+        var note = this._noteList.notes()[i];
+        html += `<li><div>${note.text().slice(0, 20)}...</div></li>`
+      }
+      html += "</ul>";
     }
 
-    NoteListView.prototype.renderHTML = function() {
-        var html = "";
-        if (this._noteList.isNotEmpty()) {
-            html += "<ul>";
-            for (var i = 0; i < this._noteList.notes().length; i++) {
-                var note = this._noteList.notes()[i];
-                html += `<li><div>${note.text().slice(0, 20)}...</div></li>`
-            }
+    return html
+  }
 
-            html += "</ul>";
-        }
-
-        return html
-    }
-
-    exports.NoteListView = NoteListView;
+  exports.NoteListView = NoteListView;
 
 })(this)

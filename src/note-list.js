@@ -1,22 +1,23 @@
 (function(exports) {
 
-    function NoteList() {
-        this.notesArray = [];
-    }
+  function NoteList() {
+    this.notesArray = [];
+  }
 
-    NoteList.prototype.notes = function() {
-        return this.notesArray
-    };
+  NoteList.prototype.notes = function() {
+    return this.notesArray
+  };
 
-    NoteList.prototype.isNotEmpty = function() {
-        return this.notes().length > 0
-    }
+  NoteList.prototype.isNotEmpty = function() {
+    return this.notes().length > 0
+  }
 
-    NoteList.prototype.addNote = function(string) {
-        var note = new Note(string);
-        this.notesArray.push(note)
-    }
+  NoteList.prototype.addNote = function(string) {
+    var note = new Note(string);
+    note.setId(this.notesArray.length);
+    this.notesArray.push(note);
+  }
 
-    exports.NoteList = NoteList;
+  exports.NoteList = NoteList;
 
 })(this)

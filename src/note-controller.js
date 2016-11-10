@@ -1,21 +1,21 @@
 (function(exports) {
 
-    function NoteController(noteList) {
-        this._noteList = noteList
-    }
+  function NoteController(noteList) {
+    this._noteList = noteList
+  }
 
-    NoteController.prototype.noteList = function() {
-        return this._noteList
-    };
+  NoteController.prototype.noteList = function() {
+    return this._noteList
+  };
 
-    NoteController.prototype.addHtmlFromNoteList = function() {
-        var noteListView = new NoteListView(this._noteList);
-        var html = noteListView.renderHTML();
-        var appDiv = document.getElementById('app');
+  NoteController.prototype.addHtmlFromNoteList = function() {
+    var noteListView = new NoteListView(this._noteList);
+    var html = noteListView.renderHTML();
+    var appDiv = document.getElementById('app');
 
-        appDiv.innerHTML = html;
-    };
+    appDiv.innerHTML = html;
+  };
 
-    exports.NoteController = NoteController;
+  exports.NoteController = NoteController;
 
 })(this);
